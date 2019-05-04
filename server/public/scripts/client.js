@@ -4,6 +4,7 @@ function onReady() {
     getTask();
     console.log('Im ready!');
     $('.js-btn-task').on('click', createTask);
+    $('.viewTasks').on('click', '.js-btn-delete', deleteTask);
 };
 
 function createTask() {
@@ -18,6 +19,15 @@ function createTask() {
     postTask(taskToSend);
 };
 
+function getTask() {
+    $.ajax({
+        type: 'GET',
+        url: '/toDo'
+    }).then(function (tasks) {
+        render(tasks);
+    })
+};
+
 function postTask(taskToSend) {
     $.ajax({
         type: 'POST',
@@ -28,14 +38,17 @@ function postTask(taskToSend) {
     });
 };
 
-function getTask() {
+function deleteTask(){
+    let id = $(this).parent().parent().children().data('id');
+    console.log(id);
+
     $.ajax({
-        type: 'GET',
-        url: '/toDo'
-    }).then(function (tasks) {
-        render(tasks);
+        type: 'DELETE',
+        url: '/toDo/delete' + id
+    }).then(function(response){
+        console.log(response);
     })
-};
+}
 
 function render(tasks) {
     $('.viewTasks').empty();

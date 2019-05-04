@@ -7,14 +7,14 @@ const pool = require('../modules/pool');
 toDoRouter.get('/', (req, res) => {
     const queryString = `SELECT * FROM "todolist";`;
 
-        pool.query(queryString)
-            .then((response) => {
-                res.send(response.rows);
-            })
-            .catch((err) => {
-                console.log('Error getting data from database: ', err);
-                res.sendStatus(500);
-            })
+    pool.query(queryString)
+        .then((response) => {
+            res.send(response.rows);
+        })
+        .catch((err) => {
+            console.log('Error getting data from database: ', err);
+            res.sendStatus(500);
+        })
 })
 
 
@@ -35,6 +35,17 @@ toDoRouter.post('/', (req, res) => {
 });
 
 //DELETE
+toDoRouter.delete('/delete/:id', (req, res) => {
+    const queryString = `DELETE FROM "todolist" WHERE id=$1;`;
+
+    pool.query(queryString, [req.params.id])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('Error deleting from database: ', err);
+        })
+})
 
 //PUT
 
