@@ -1,12 +1,12 @@
 $(document).ready(onReady);
 
-function onReady(){
+function onReady() {
     getTask();
     console.log('Im ready!');
     $('.js-btn-task').on('click', createTask);
 };
 
-function createTask(){
+function createTask() {
     let task = $('.taskIn').val();
     let completed = $('.completedIn').val();
 
@@ -18,22 +18,34 @@ function createTask(){
     postTask(taskToSend);
 };
 
-function postTask(taskToSend){
+function postTask(taskToSend) {
     $.ajax({
         type: 'POST',
         url: '/toDo',
         data: taskToSend
-    }).then(function(response){
-        console.log(response);
-        //getTask();
+    }).then(function (response) {
+        getTask();
     });
 };
 
-function getTask(){
+function getTask() {
     $.ajax({
         type: 'GET',
         url: '/toDo'
-    }).then(function(arrayFromDatabase){
-        console.log(arrayFromDatabase);
+    }).then(function (tasks) {
+        render(tasks);
     })
-}
+};
+
+function render(tasks) {
+    $('.viewTasks').empty();
+
+    for (let task of tasks) {
+        $('.viewTasks').append(`
+        <tr data-id="${task.id}"></tr>
+        <td>${task.task}</td>
+        <td>${task.completed}</td>
+        <td><button class="js-btn-delete">Delete</button></td>`
+        )
+    }
+};

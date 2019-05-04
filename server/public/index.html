@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>To Do List App</title>
     <script src="vendors/jquery.min.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-    <h1>To Do App</h1>
-    <input type="text" class="taskIn" placeholder="Create Task">
-    <input type="text" class="completedIn" placeholder="Completed?">
-    <button class="js-btn-task">Add Task</button>
+    <div class="container">
+        <h1>To Do App</h1>
+        <input type="text" class="taskIn" placeholder="Create Task">
+        <input type="text" class="completedIn" placeholder="Completed?">
+        <button class="js-btn-task">Add Task</button>
+
+        <div class="col-md-9">
+            <section>
+              <h2>Your Tasks</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Task</th>
+                    <th>Completed</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody class="viewTasks">
+                </tbody>
+              </table>
+            </section>
+          </div>
+    </div>
 
 </body>
+
 </html>
