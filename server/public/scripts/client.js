@@ -2,9 +2,28 @@ $(document).ready(onReady);
 
 function onReady(){
     console.log('Im ready!');
-    $('.js-btn-task').on('click', postTask);
+    $('.js-btn-task').on('click', createTask);
 };
 
-function postTask(){
-    console.log('I work!');
-}
+function createTask(){
+    let task = $('.taskIn').val();
+    let completed = $('.completedIn').val();
+
+    let taskToSend = {
+        task,
+        completed,
+    };
+
+    postTask(taskToSend);
+};
+
+function postTask(taskToSend){
+    $.ajax({
+        type: 'POST',
+        url: '/toDo',
+        data: taskToSend
+    }).then(function(response){
+        console.log(response);
+        //getTask();
+    });
+};
