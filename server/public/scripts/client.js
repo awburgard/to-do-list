@@ -37,25 +37,31 @@ function postTask(taskToSend) {
         url: '/toDo',
         data: taskToSend
     }).then(function (response) {
-        getTask();
+        swal("Good job!", "Your task has been added!", "success", {
+            button: "Boo-yah!",
+        });
+        getTask(response);
+    }).catch(function (response) {
+        swal("Crap!", "There was an error adding your task!", "error", {
+            button: "Boo!",
+        });
     });
 };
 
-function completeTask(){
-   let id = $(this).parent().parent().data('id');
+function completeTask() {
+    let id = $(this).parent().parent().data('id');
 
-   $.ajax({
-       type: 'PUT',
-       url: '/toDo/completed/' + id
-   }).then(function(response){
-       getTask();
-   })
+    $.ajax({
+        type: 'PUT',
+        url: '/toDo/completed/' + id
+    }).then(function (response) {
+        getTask();
+    })
 }
 
 function deleteTask() {
-
     const id = $(this).parent().parent().data('id');
-
+    
     $.ajax({
         type: 'DELETE',
         url: '/toDo/delete/' + id
