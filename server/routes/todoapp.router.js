@@ -34,7 +34,7 @@ toDoRouter.post('/', (req, res) => {
 });
 
 //DELETE
-toDoRouter.delete('/delete/:id', (req,res) => {
+toDoRouter.delete('/delete/:id', (req, res) => {
     const queryString = `DELETE FROM "todolist" WHERE id=$1;`;
 
     pool.query(queryString, [req.params.id])
@@ -47,5 +47,17 @@ toDoRouter.delete('/delete/:id', (req,res) => {
 });
 
 //PUT
+toDoRouter.put('/completed/:id', (req,res)=>{
+    const queryString = `UPDATE "todolist" SET "completed" = true WHERE id=$1;`;
+
+    pool.query(queryString, [req.params.id])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('Error deleting from database: ', err);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = toDoRouter;

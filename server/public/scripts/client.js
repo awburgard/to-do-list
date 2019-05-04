@@ -5,6 +5,7 @@ function onReady() {
     console.log('Im ready!');
     $('.js-btn-task').on('click', createTask);
     $('.viewTasks').on('click', '.js-btn-delete', deleteTask);
+    $('.viewTasks').on('click', '.js-btn-update', completeTask);
 };
 
 function createTask() {
@@ -17,6 +18,8 @@ function createTask() {
     };
 
     postTask(taskToSend);
+    $('.taskIn').val('');
+    $('.completedIn').val('');
 };
 
 function getTask() {
@@ -38,15 +41,25 @@ function postTask(taskToSend) {
     });
 };
 
-function deleteTask(){
+function completeTask(){
+   let id = $(this).parent().parent().data('id');
+
+   $.ajax({
+       type: 'PUT',
+       url: '/toDo/completed/' + id
+   }).then(function(response){
+       getTask();
+   })
+}
+
+function deleteTask() {
 
     const id = $(this).parent().parent().data('id');
-    console.log(id);
 
     $.ajax({
         type: 'DELETE',
         url: '/toDo/delete/' + id
-    }).then(function(response){
+    }).then(function (response) {
         getTask();
     })
 }
@@ -56,10 +69,12 @@ function render(tasks) {
 
     for (let task of tasks) {
         $('.viewTasks').append(`
-        <tr data-id="${task.id}"></tr>
+        <tr data-id="${task.id}">
         <td>${task.task}</td>
         <td>${task.completed}</td>
-        <td><button class="js-btn-delete">Delete</button></td>`
+        <td><button class="js-btn-update">Complete Task</button></td>
+        <td><button class="js-btn-delete">Delete</button></td>
+        </tr>`
         )
     }
 };
