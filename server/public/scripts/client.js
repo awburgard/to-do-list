@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 
 function onReady(){
+    getTask();
     console.log('Im ready!');
     $('.js-btn-task').on('click', createTask);
 };
@@ -27,3 +28,12 @@ function postTask(taskToSend){
         //getTask();
     });
 };
+
+function getTask(){
+    $.ajax({
+        type: 'GET',
+        url: '/toDo'
+    }).then(function(arrayFromDatabase){
+        console.log(arrayFromDatabase);
+    })
+}
