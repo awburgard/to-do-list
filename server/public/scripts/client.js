@@ -72,8 +72,8 @@ function render(tasks) {
         <tr data-id="${task.id}">
         <td>${task.task}</td>
         <td>${task.completed}</td>
-        <td><button class="js-btn-update">Complete Task</button></td>
-        <td><button class="js-btn-delete">Delete</button></td>
+        <td><button class="js-btn-update button is-success">Complete Task</button></td>
+        <td><button class="js-btn-delete button is-danger">Delete</button></td>
         </tr>`
         )
     }

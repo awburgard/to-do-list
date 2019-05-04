@@ -2,36 +2,55 @@
 <html lang="en">
 
 <head>
-    <title>To Do List App</title>
-    <script src="vendors/jquery.min.js"></script>
-    <script src="scripts/client.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
+  <title>To Do List App</title>
+  <script src="vendors/jquery.min.js"></script>
+  <script src="scripts/client.js"></script>
+  <link rel="stylesheet" href="vendors/bulma.min.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>To Do App</h1>
-        <input type="text" class="taskIn" placeholder="Create Task">
-        <input type="text" class="completedIn" placeholder="Completed?">
-        <button class="js-btn-task">Add Task</button>
-
-        <div class="col-md-9">
-            <section>
-              <h2>Your Tasks</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Task</th>
-                    <th>Completed</th>
-                    <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody class="viewTasks">
-                </tbody>
-              </table>
-            </section>
-          </div>
+  <section class="hero is-small is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Welcome to Your To Do List</h1>
+        <h2 class="subtitle">Find New Realms of Productivity</h2>
+      </div>
     </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="column">
+        <h1>To Do App</h1>
+        <input type="text" class="taskIn input is-info is-rounded" placeholder="Create Task">
+        <button class="js-btn-task button is-info">Add Task</button>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="column">
+        <h2>Your Tasks</h2>
+        <table class="table">
+          <thead class="thread">
+            <tr>
+              <th>Task</th>
+              <th>Completed</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody class="viewTasks">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container column ">
+      <h1>Finished Tasks</h1>
+    </div>
+  </section>
 
 </body>
 
