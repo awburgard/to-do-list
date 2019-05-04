@@ -39,14 +39,15 @@ function postTask(taskToSend) {
 };
 
 function deleteTask(){
-    let id = $(this).parent().parent().children().data('id');
+
+    const id = $(this).parent().parent().data('id');
     console.log(id);
 
     $.ajax({
         type: 'DELETE',
-        url: '/toDo/delete' + id
+        url: '/toDo/delete/' + id
     }).then(function(response){
-        console.log(response);
+        getTask();
     })
 }
 

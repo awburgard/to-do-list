@@ -6,7 +6,6 @@ const pool = require('../modules/pool');
 //GET
 toDoRouter.get('/', (req, res) => {
     const queryString = `SELECT * FROM "todolist";`;
-
     pool.query(queryString)
         .then((response) => {
             res.send(response.rows);
@@ -35,7 +34,7 @@ toDoRouter.post('/', (req, res) => {
 });
 
 //DELETE
-toDoRouter.delete('/delete/:id', (req, res) => {
+toDoRouter.delete('/delete/:id', (req,res) => {
     const queryString = `DELETE FROM "todolist" WHERE id=$1;`;
 
     pool.query(queryString, [req.params.id])
@@ -43,9 +42,9 @@ toDoRouter.delete('/delete/:id', (req, res) => {
             res.sendStatus(200);
         })
         .catch((err) => {
-            console.log('Error deleting from database: ', err);
-        })
-})
+            console.log('Error deleting: ', err);
+        });
+});
 
 //PUT
 
