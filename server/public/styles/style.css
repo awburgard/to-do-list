@@ -3,10 +3,11 @@ body {
 }
 
 h1 {
-    color: blue;
+    color: #053959;
 }
 
 h2 {
+    color: #053959;
     padding: 20px 0 0 0;
     text-align: center;
 }
@@ -25,8 +26,8 @@ td {
 }
 
 th {
-    background-color: #333333;
-    color: #eeeeee;
+    background-color: #053959;
+    color: #F5F5F5;
     text-align: center;
 }
 

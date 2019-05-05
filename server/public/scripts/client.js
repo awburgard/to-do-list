@@ -82,7 +82,7 @@ function render(tasks) {
 
         let markCompletedElement = `<td></td>`;
 
-        if (task.completed == false){
+        if (task.completed == false) {
             markCompletedElement = `<td><button class="js-btn-update btn btn-success">Complete Task</button></td>`
         }
         $('.viewTasks').append(`
@@ -92,5 +92,12 @@ function render(tasks) {
         <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
         </tr>`
         )
+        $('.finishedTasks').empty();
+
+        if(task.completed){
+            $('.finishedTasks').append(`
+            <div>${task.task}</div>
+            `)
+        }
     }
 };
