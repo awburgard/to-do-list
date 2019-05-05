@@ -1,9 +1,5 @@
-body {
-    padding: 25px 0 0 0;
-}
-
 h1 {
-    color: #053959;
+    color: #F5F5F5;
 }
 
 h2 {
@@ -42,7 +38,22 @@ input {
     width: 100%;
 }
 
-.completed{
+.completed {
     text-decoration: line-through;
     text-decoration-color: #053959;
+}
+
+.bg-1 {
+    background-color: #053959;
+    color: #ffffff;
+}
+
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.bg-4 {
+    background-color: #053959;
+    color: #ffffff;
 }
