@@ -92,5 +92,10 @@ function render(tasks) {
         <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
         </tr>`
         )
+
+        if (task.completed) {
+            const element = $('.viewTasks').children().last();
+            element.addClass('text-success');
+        }
     }
 };
