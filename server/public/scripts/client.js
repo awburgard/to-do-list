@@ -92,12 +92,5 @@ function render(tasks) {
         <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
         </tr>`
         )
-        $('.finishedTasks').empty();
-
-        if(task.completed){
-            $('.finishedTasks').append(`
-            <div>${task.task}</div>
-            `)
-        }
     }
 };
