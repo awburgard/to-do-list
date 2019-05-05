@@ -61,7 +61,7 @@ function completeTask() {
 
 function deleteTask() {
     const id = $(this).parent().parent().data('id');
-    
+
     $.ajax({
         type: 'DELETE',
         url: '/toDo/delete/' + id
@@ -74,12 +74,22 @@ function render(tasks) {
     $('.viewTasks').empty();
 
     for (let task of tasks) {
+        let completed = 'No';
+
+        if (task.completed) {
+            completed = 'Yes';
+        }
+
+        let markCompletedElement = `<td></td>`;
+
+        if (task.completed == false){
+            markCompletedElement = `<td><button class="js-btn-update btn btn-success">Complete Task</button></td>`
+        }
         $('.viewTasks').append(`
         <tr data-id="${task.id}">
         <td>${task.task}</td>
-        <td>${task.completed}</td>
-        <td><button class="js-btn-update">Complete Task</button></td>
-        <td><button class="js-btn-delete">Delete</button></td>
+        ${markCompletedElement}
+        <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
         </tr>`
         )
     }
