@@ -6,6 +6,7 @@ function onReady() {
     $('.js-btn-task').on('click', createTask);
     $('.viewTasks').on('click', '.js-btn-delete', deleteTask);
     $('.viewTasks').on('click', '.js-btn-update', completeTask);
+    $('.finished-tasks-table').on('click', '.js-btn-delete', deleteTask);
 };
 
 function createTask() {
@@ -72,8 +73,20 @@ function deleteTask() {
 
 function render(tasks) {
     $('.viewTasks').empty();
+    $('.finished-tasks-table').empty();
+
+    const notCompleteArray = [];
+    const completedArray = [];
 
     for (let task of tasks) {
+        if (task.completed == true) {
+            completedArray.push(task);
+        } else {
+            notCompleteArray.push(task);
+        }
+    }
+
+    for (let task of notCompleteArray) {
         let completed = 'No';
 
         if (task.completed) {
@@ -92,10 +105,14 @@ function render(tasks) {
         <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
         </tr>`
         )
-
-        if (task.completed) {
-            const element = $('.viewTasks').children().last();
-            element.addClass('text-success');
-        }
     }
+
+    for (let task of completedArray) {
+        $('.finished-tasks-table').append(`
+        <tr data-id="${task.id}">
+        <td>${task.task}</td>
+        <td><button class="js-btn-delete btn btn-danger">Delete</button></td>
+        </tr>
+        `);
+    };
 };
