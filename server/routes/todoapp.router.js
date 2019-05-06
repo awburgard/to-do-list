@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 //GET
 toDoRouter.get('/', (req, res) => {
-    const queryString = `SELECT * FROM "todolist";`;
+    const queryString = `SELECT * FROM "todolist" ORDER BY "completed" ASC;`;
     pool.query(queryString)
         .then((response) => {
             res.send(response.rows);
